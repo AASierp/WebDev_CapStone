@@ -32,7 +32,7 @@ const submission =  async (e) => {
         <label>Confirm Password</label>
         <input type = "confirmPassword" required value = {confirmPassword} onChange = {(e) => setConfirmPassword(e.target.value)} />
       </div>
-      <Btn type="submit" name ="Register"/>
+      <Btn type="submit" name ="Register" />
     </form>
    </div>
     
