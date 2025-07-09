@@ -8,7 +8,6 @@ import db from '../db.js'
 
 const router = express.Router();
 
-
 // creates route that is listening for for post requests from the front end @ /register
 // when a request is made, like submitting a form, this runs.
 
@@ -23,12 +22,13 @@ router.post('/register', async (req, res) => {
 
         //hashing the password before being sent to the database.
         const hash = await bcrypt.hash(password, 13);
-
+        //console.log(hash);
         //using a 'prepared statement' here to prevent sql injection - 
         //basically predefining the sql query and setting the values as parameters so they cant be manipulated fomr the outside
 
         const dbInsert = db.prepare('INSERT INTO users(email, password) VALUES( ?, ?)');
         //inserts the email and hashed password into the query and runs
+        //console.log(dbInsert);
         dbInsert.run(email, hash);
 
         // just sending a response if successful
