@@ -4,9 +4,11 @@ import Btn from "../components/Button";
 
 
 function Login(){
+    //when to chatgpt for an explanation of 'state' - still dont quite understand
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    /////////////////////////////////////////////////////////////////////////////
     const navigate = useNavigate();
 
     const submission = async (element) => {
@@ -14,10 +16,24 @@ function Login(){
         setError('')
 
         try{
-           console.log(`${email} logged in`)
-            navigate("/dashboard");
-        }
-        catch(error){
+            const response = await fetch('http://localhost:3000/api/login', {
+                method: 'POST',
+                headers: {
+                    'content-type' : 'application/json'
+                },
+                body: JSON.stringify({email: email, password: password})
+            });
+
+            if(response.ok){
+                navigate('/dashboard');
+            }
+            else{
+                const data = await response.text();
+                setError(data);
+            }
+
+
+        }catch(error){
             setError("An account with those credentials does not exist.");
         }
     };
@@ -27,6 +43,8 @@ function Login(){
 
         <div className = "container-login">
             <h2>Login</h2>
+
+            {error && <p style={{ color: "red" }}>{error}</p>}
 
             <form onSubmit={submission}>
                 <div>
@@ -40,8 +58,6 @@ function Login(){
 
                 <Btn type="submit" name="Login" />
             </form>
-
-            {error && <p style={{ color: "red" }}>{error}</p>}
 
             <p>Please click <Link to="/register">HERE</Link> to create an account</p>
         </div>
