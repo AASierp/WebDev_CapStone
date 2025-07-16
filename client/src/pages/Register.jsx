@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import Btn from "../components/Button";
+import Btn from "../components/SubmitButton";
 
 
 function Register() {

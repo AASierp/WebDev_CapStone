@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Btn from "../components/Button";
+import Btn from "../components/SubmitButton";
 
 
 function Login(){
-    //when to chatgpt for an explanation of 'state' - still dont quite understand
+    //setting state variables
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    /////////////////////////////////////////////////////////////////////////////
+    
     const navigate = useNavigate();
 
     const submission = async (element) => {
