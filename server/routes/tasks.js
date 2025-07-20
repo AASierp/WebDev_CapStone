@@ -1,11 +1,16 @@
-import db from "../db/db";
 import express from "express";
+import db from "../db/db.js";
+import { requireLogin } from "./auth.js";
 
+//creates the router
 const router = express.Router();
 
+//handles get requests from the front end /tasks
 router.get("/tasks", requireLogin, async (req, res) => {
   try {
+    //stores a statement in variable to avoid explicitly declaring sensitive information.
     const prepared = db.prepare("SELECT * FROM tasks WHERE userId = ?");
+    //we pass said information, the userId in this case, as a param to the statement.
     const getTask = prepared.all(req.session.userId);
     res.json(getTask);
   } catch (error) {

@@ -7,12 +7,13 @@
 import Database from "better-sqlite3";
 
 //database instantiation - can now access the database using the alias 'db' . 'method'
-const db = new Database("./db/users.db");
+const db = new Database("./db/taskforge.db");
 
 //creating user table
 db.exec(`CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     email TEXT UNIQUE NOT NULL,
+    username TEXT NOT NULL,
     password TEXT NOT NULL
     )
     `);
@@ -21,8 +22,9 @@ db.exec(`CREATE TABLE IF NOT EXISTS tasks (
          id INTEGER PRIMARY KEY AUTOINCREMENT,
          userId INTEGER NOT NULL,
          title TEXT NOT NULL,
-         status TEXT DEFAUlT 'backlog',
+         status TEXT DEFAULT 'backlog',
          description TEXT,
-         FOREIGN KEY (userID) REFERENCES users(id)
+         FOREIGN KEY (userId) REFERENCES users(id)
     )`);
+
 export default db;

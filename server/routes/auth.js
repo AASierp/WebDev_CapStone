@@ -8,7 +8,7 @@ import db from "../db/db.js";
 
 const router = express.Router();
 
-function requireLogin(req, res, next) {
+export function requireLogin(req, res, next) {
   if (!req.session.userId) {
     return res.status(401).send("please log in to access this site");
   }
@@ -24,6 +24,7 @@ router.post("/register", async (req, res) => {
   //setting the email and password sent in the request body to constant variables.
   const email = req.body.email;
   const password = req.body.password;
+  const username = req.body.username;
 
   try {
     //hashing the password before being sent to the database.
@@ -33,11 +34,11 @@ router.post("/register", async (req, res) => {
     //basically predefining the sql query and setting the values as parameters so they cant be manipulated fomr the outside
 
     const dbInsert = db.prepare(
-      "INSERT INTO users(email, password) VALUES( ?, ?)"
+      "INSERT INTO users(email, password, username) VALUES( ?, ?, ?)"
     );
     //inserts the email and hashed password into the query and runs
     //console.log(dbInsert);
-    dbInsert.run(email, hash);
+    dbInsert.run(email, hash, username);
 
     // just sending a response if successful
     res.status(200);
@@ -87,6 +88,7 @@ router.post("/login", async (req, res) => {
     // saves user id/email into session (server memory)
     req.session.userId = user.id;
     req.session.email = user.email;
+    req.session.username = user.username;
     //success response
     res.status(200);
     res.send("Login was a success");
@@ -101,11 +103,17 @@ router.post("/login", async (req, res) => {
 router.get("/session", async (req, res) => {
   // if logged int
   if (req.session.userId) {
-    res.json({ isLoggedIn: true, email: req.session.email });
+    res.json({
+      isLoggedIn: true,
+      email: req.session.email,
+      username: req.session.username,
+    });
+    console.log("Logged in!");
   }
   //if not logged in
   else {
     res.json({ isLoggedIn: false });
+    console.log("not logged in");
   }
 });
 
@@ -115,8 +123,6 @@ router.post("/logout", requireLogin, async (req, res) => {
   res.clearCookie("connect.sid");
   res.send("logged out");
 });
-
-
 
 ///////////////////////////////////ROUTES END//////////////////////////////////////////////////
 
