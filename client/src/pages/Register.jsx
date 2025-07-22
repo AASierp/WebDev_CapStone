@@ -29,7 +29,7 @@ function Register() {
     }
 
     if (!validateUserName(username)) {
-      return error(
+      return setError(
         "User Name must consist of only letters and numbers and be between 5-15 characters in length (inclusive)"
       );
     }
@@ -57,7 +57,7 @@ function Register() {
 
       if (response.ok) {
         console.log("Registration Complete");
-        navigate("/dashboard");
+        navigate("/");
       } else {
         const data = await response.text();
         setError(data);
