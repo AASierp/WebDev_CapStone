@@ -45,7 +45,12 @@ function Dashboard() {
   } else {
     for (let i = 0; i < backlogTasks.length; i++) {
       backlogContent.push(
-        <TaskCard key={backlogTasks[i].id} task={backlogTasks[i]} />
+        <TaskCard
+          key={backlogTasks[i].id}
+          task={backlogTasks[i]}
+          update={getTasks}
+          deleteTask={getTasks}
+        />
       );
     }
   }
@@ -57,7 +62,12 @@ function Dashboard() {
     inProgressContent = [];
     for (let i = 0; i < inProgressTasks.length; i++) {
       inProgressContent.push(
-        <TaskCard key={inProgressTasks[i].id} task={inProgressTasks[i]} />
+        <TaskCard
+          key={inProgressTasks[i].id}
+          task={inProgressTasks[i]}
+          update={getTasks}
+          deleteTask={getTasks}
+        />
       );
     }
   }
@@ -68,7 +78,12 @@ function Dashboard() {
   } else {
     for (let i = 0; i < finishedTasks.length; i++) {
       finishedContent.push(
-        <TaskCard key={finishedTasks[i].id} task={finishedTasks[i]} />
+        <TaskCard
+          key={finishedTasks[i].id}
+          task={finishedTasks[i]}
+          update={getTasks}
+          deleteTask={getTasks}
+        />
       );
     }
   }
