@@ -17,7 +17,7 @@ db.exec(`CREATE TABLE IF NOT EXISTS users (
     password TEXT NOT NULL
     )
     `);
-
+//creating "Tasks" table
 db.exec(`CREATE TABLE IF NOT EXISTS tasks (
          id INTEGER PRIMARY KEY AUTOINCREMENT,
          userId INTEGER NOT NULL,

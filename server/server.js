@@ -5,11 +5,6 @@ import "./db/db.js";
 import session from "express-session";
 import tasksRoutes from "./routes/tasks.js";
 
-// const express = require('express');
-// const cors = require('cors');
-// const authRoutes = require('./routes/auth')
-
-// boiler plate express server creation, I stole from the internet.
 
 //simply setting the server to a varaible.
 const app = express();

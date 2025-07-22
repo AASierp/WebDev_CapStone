@@ -29,7 +29,9 @@ router.post("/tasks", requireLogin, (req, res) => {
       "INSERT INTO tasks (userId, title, description, status) VALUES(?, ?, ?, ?)"
     );
     const task = prepared.run(req.session.userId, title, description, status);
-    res.status(201).json({ id: task.lastInsertRowid, title, status });
+    res
+      .status(201)
+      .json({ id: task.lastInsertRowid, title, description, status });
   } catch (error) {
     console.log(error);
     res.status(500).json("server unreachable");
