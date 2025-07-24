@@ -5,7 +5,6 @@ import "./db/db.js";
 import session from "express-session";
 import tasksRoutes from "./routes/tasks.js";
 
-
 //simply setting the server to a varaible.
 const app = express();
 //listening port

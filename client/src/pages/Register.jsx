@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Btn from "../components/SubmitButton";
+import logo from "../images/logo_welcome.png";
 
 function Register() {
   //useState 'Hooks' (All 'Hooks' can only be used inside function components, not class components);
   //hooks cannot be nested, they need to be called at the top of the function and execute in the order that they
   //are called. const [currentState, Function that updates currentState] = useState(can pass initial state here, or a fn);
-  //the variables are set via deconstruction here.
+  //the variables are set via destructuring here.
 
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -70,54 +71,58 @@ function Register() {
 
   return (
     //simple form that takes email/password/password confirmation
-    <div className="container-register">
-      <h2>Registation Form</h2>
+    <>
+      <img src={logo} alt="Dark Logo" className="logo-img" />
+      <div className="container-register">
+        <h2>Registation Form</h2>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        {/*THIS IS AN AI GENERATED ERROR DISPLAY - example of shortcircuiting(if(Truthy/Falsey) 'error' has value then display X)*/}
+        {error && <p style={{ color: "red" }}>{error}</p>}
 
-      <form onSubmit={submission}>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            placeholder="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>User Name</label>
-          <input
-            type="text"
-            placeholder="User Name"
-            value={username}
-            onChange={(e) => setUserName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            placeholder="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Confirm Password</label>
-          <input
-            type="password"
-            placeholder="confirm password"
-            required
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </div>
-        <Btn type="submit" name="Register" />
-      </form>
-    </div>
+        <form onSubmit={submission}>
+          <div>
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>User Name</label>
+            <input
+              type="text"
+              placeholder="User Name"
+              value={username}
+              onChange={(e) => setUserName(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              placeholder="confirm password"
+              required
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+          <Btn type="submit" name="Register" />
+        </form>
+      </div>
+    </>
   );
 }
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import LogOutBtn from "../components/LogOutBtn";
 import TaskCard from "../components/TaskCard";
 import AddTaskForm from "../components/TaskCardForm";
+import logo from "../images/logodark.png";
 
 function Dashboard() {
   const [tasks, setTasks] = useState([]);
@@ -18,7 +19,7 @@ function Dashboard() {
         const data = await response.json();
         setTasks(data);
       } else {
-        console.log("something has gone wrong");
+        console.log("could not retieve task or task does not exist");
       }
     } catch (error) {
       console.error("Had an issue fetching tasks 8( ");
@@ -34,9 +35,15 @@ function Dashboard() {
   let finishedTasks = [];
 
   if (tasks.length > 0) {
-    backlogTasks = tasks.filter((task) => task.status === "backlog");
-    inProgressTasks = tasks.filter((task) => task.status === "in-progress");
-    finishedTasks = tasks.filter((task) => task.status === "finished");
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].status === "backlog") {
+        backlogTasks.push(tasks[i]);
+      } else if (tasks[i].status === "in-progress") {
+        inProgressTasks.push(tasks[i]);
+      } else if (tasks[i].status === "finished") {
+        finishedTasks.push(tasks[i]);
+      }
+    }
   }
 
   let backlogContent = [];
@@ -119,30 +126,36 @@ function Dashboard() {
   }
 
   return (
-    <div className="main-container">
-      <h2>Dashboard</h2>
-      <div className="columns-container">
-        <div className="column">
-          <h3>Backlog</h3>
-          <button onClick={() => setBacklogForm(true)}>Add Task</button>
-          {backlogFormContent}
-          {backlogContent}
-        </div>
-        <div className="column">
-          <h3>In Progress</h3>
-          <button onClick={() => setInProgressForm(true)}>Add Task</button>
-          {inProgressFormContent}
-          {inProgressContent}
-        </div>
-        <div className="column">
-          <h3>Finished</h3>
-          <button onClick={() => setFinishedForm(true)}>Add Task</button>
-          {finishedFormContent}
-          {finishedContent}
-        </div>
-      </div>
+    <div className='background'>
+      <img src={logo} alt="Dark Logo" className="logo-img" />
+      <div className="main-container">
+        <h2>Dashboard</h2>
 
-      <LogOutBtn />
+        <div className="columns-container">
+          <div className="column">
+            <h3>Backlog</h3>
+            <button onClick={() => setBacklogForm(true)}>Add Task</button>
+            {backlogFormContent}
+            {backlogContent}
+          </div>
+
+          <div className="column">
+            <h3>In Progress</h3>
+            <button onClick={() => setInProgressForm(true)}>Add Task</button>
+            {inProgressFormContent}
+            {inProgressContent}
+          </div>
+
+          <div className="column">
+            <h3>Finished</h3>
+            <button onClick={() => setFinishedForm(true)}>Add Task</button>
+            {finishedFormContent}
+            {finishedContent}
+          </div>
+        </div>
+
+        <LogOutBtn />
+      </div>
     </div>
   );
 }

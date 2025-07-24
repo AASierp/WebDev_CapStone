@@ -84,8 +84,10 @@ router.post("/login", async (req, res) => {
       res.json("Password is not correct, please try again");
       return;
     }
-
-    // saves user id/email into session (server memory)
+    //Had a lot of AI help with using/understing Sessions
+    //THis is where session credentials are first created and tied to user info from DB
+    //this info is now tied to a cookie and will be used in all future request for auth and state
+    //saves user id/email/username into session (server memory)
     req.session.userId = user.id;
     req.session.email = user.email;
     req.session.username = user.username;
@@ -101,7 +103,7 @@ router.post("/login", async (req, res) => {
 
 //checks to see if user is logged in
 router.get("/session", async (req, res) => {
-  // if logged int
+  // if logged in
   if (req.session.userId) {
     res.json({
       isLoggedIn: true,
@@ -119,12 +121,15 @@ router.get("/session", async (req, res) => {
 
 //clears user data on logout
 router.post("/logout", requireLogin, async (req, res) => {
-  req.session.destroy();
-  res.clearCookie("connect.sid");
-  res.send("logged out");
+  req.session.destroy((error) => {
+    if (error) {
+      console.error("Session not destroyed", error);
+      return res.status(500).send("could not log out");
+    }
+    res.clearCookie("connect.sid");
+    res.send("logged out");
+  });
 });
-
-///////////////////////////////////ROUTES END//////////////////////////////////////////////////
 
 // exports to make avaible to the rest of the application
 export default router;

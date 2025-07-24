@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Btn from "../components/SubmitButton";
+import logo from "../images/logo_welcome.png";
 
 function Login() {
   //setting state variables
@@ -36,37 +37,41 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
+    <div>
+      <img src={logo} alt="Dark Logo" className="logo-img" />
+      <div className="login-container">
+        
+        <h2>Login</h2>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        
+        <form className="login-form" onSubmit={submission}>
+          <div>
+            <label className="email-shift">Email</label>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
 
-      <form onSubmit={submission}>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+          <Btn type="submit" name="Login" />
+        </form>
 
-        <Btn type="submit" name="Login" />
-      </form>
-
-      <p>
-        Please click <Link to="/register">HERE</Link> to create an account
-      </p>
+        <p>
+          Please click <Link to="/register">HERE</Link> to create an account
+        </p>
+      </div>
     </div>
   );
 }

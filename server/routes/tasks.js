@@ -6,7 +6,7 @@ import { requireLogin } from "./auth.js";
 const router = express.Router();
 
 //handles get requests from the front end /tasks
-router.get("/tasks", requireLogin, async (req, res) => {
+router.get("/tasks", requireLogin, (req, res) => {
   try {
     //stores a statement in variable to avoid explicitly declaring sensitive information.
     const prepared = db.prepare("SELECT * FROM tasks WHERE userId = ?");
