@@ -28,7 +28,7 @@ function App() {
   }, [navigate]);
 
   return (
-    <main className="main-content">
+    <main>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />

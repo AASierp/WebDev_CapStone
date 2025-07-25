@@ -6,23 +6,13 @@
   height: 100vh;
   margin: 0 auto;
   padding: 2rem;
+  font-family: Arial, sans-serif;
   text-align: center;
   background-image: url("./images/forgelight.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
-
-/* .main-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  max-width: 100%px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-} */
 
 h2,
 h3 {
@@ -42,12 +32,13 @@ h3 {
   padding: 10px;
   box-shadow: -8px 8px 15px 0px rgba(255, 255, 255, 0.5);
   background-color: rgba(51, 51, 51, 0.8);
-  min-height: 300px;
-  min-width: 180px;
+  margin: 20px;
+  min-height: 35rem;
+  min-width: 25rem;
 }
 
 .column h3 {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   color: white;
 }
 
@@ -62,7 +53,7 @@ h3 {
 
 .task-card p {
   margin: 4px 0;
-  font-size: 0.9em;
+  font-size: 1.2rem;
 }
 
 .container-register {
@@ -109,12 +100,6 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* form {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-} */
-
 form input {
   margin: 8px;
   padding: 6px;
@@ -126,23 +111,23 @@ form button {
   align-self: flex-start;
 }
 
-/* .email-shift {
-  margin-left: 28px;
-} */
-
 img {
   width: 300px;
   border-radius: 20px;
   box-shadow: -5px 5px 5px -2px rgba(255, 255, 255, 0.2);
-  opacity: 0.7;
+  opacity: 0.8;
   margin: 30px;
 }
 
-.background {
-  background-image: url("./images/logodark.png");
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+.edit-btn {
+  margin: 5px;
+}
+
+.delete-btn {
+  margin: 5px;
+}
+
+.description {
+  text-wrap: 1;
+  height: 50px;
 }

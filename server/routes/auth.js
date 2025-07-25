@@ -21,7 +21,7 @@ export function requireLogin(req, res, next) {
 // when a request is made, like submitting a form, this runs.
 
 router.post("/register", async (req, res) => {
-  //setting the email and password sent in the request body to constant variables.
+  //setting the email and password sent in the request body to constant.
   const email = req.body.email;
   const password = req.body.password;
   const username = req.body.username;

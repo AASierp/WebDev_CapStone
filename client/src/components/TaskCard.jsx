@@ -80,8 +80,8 @@ function TaskCard({ task, update, deleteTask }) {
       <div>
         <h2>{task.title}</h2>
         <p>{task.description}</p>
-        <button onClick={() => setEdit(true)}>Edit</button>
-        <button onClick={handleDelete}>Delete</button>
+        <button className="edit-btn" onClick={() => setEdit(true)}>Edit</button>
+        <button className="delete-btn" onClick={handleDelete}>Delete</button>
       </div>
     );
   }

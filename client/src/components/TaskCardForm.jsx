@@ -40,7 +40,7 @@ function AddTaskForm({ onAdd, status }) {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <input
+      <textarea className="description"
         type="text"
         placeholder="Description"
         value={description}
