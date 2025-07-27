@@ -33,14 +33,15 @@ function AddTaskForm({ onAdd, status }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginTop: "10px" }}>
-      <input
+    <form onSubmit={handleSubmit}>
+      <input 
         type="text"
         placeholder="Task Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <textarea className="description"
+      <textarea
+        className="description"
         type="text"
         placeholder="Description"
         value={description}

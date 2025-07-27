@@ -55,7 +55,7 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div>
+          <div className ="login-password">
             <label>Password</label>
             <input
               type="password"

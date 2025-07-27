@@ -74,7 +74,7 @@ function Register() {
     <>
       <img src={logo} alt="Dark Logo" className="logo-img" />
       <div className="container-register">
-        <h2>Registation Form</h2>
+        <h2 className="register-title">Registation Form</h2>
 
         {/*THIS IS AN AI GENERATED ERROR DISPLAY - example of shortcircuiting(if(Truthy/Falsey) 'error' has value then display X)*/}
         {error && <p style={{ color: "red" }}>{error}</p>}
@@ -90,16 +90,16 @@ function Register() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div>
+          <div className="user-name">
             <label>User Name</label>
             <input
               type="text"
-              placeholder="User Name"
+              placeholder="user name"
               value={username}
               onChange={(e) => setUserName(e.target.value)}
             />
           </div>
-          <div>
+          <div className="register-password">
             <label>Password</label>
             <input
               type="password"
@@ -109,7 +109,7 @@ function Register() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div>
+          <div className ="confirm-password">
             <label>Confirm Password</label>
             <input
               type="password"

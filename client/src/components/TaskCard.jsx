@@ -55,6 +55,13 @@ function TaskCard({ task, update, deleteTask }) {
     }
   }
 
+  function handleDragStart(event) {
+    //stores data to be transferred during drag and drop
+    event.dataTransfer.setData("application/json", JSON.stringify(task));
+    //set the allowed drop effect
+    event.dataTransfer.effectAllowed = "move";
+  }
+
   let content;
 
   if (edit) {
@@ -77,11 +84,15 @@ function TaskCard({ task, update, deleteTask }) {
     );
   } else {
     content = (
-      <div>
+      <div draggable="true" onDragStart={handleDragStart}>
         <h2>{task.title}</h2>
         <p>{task.description}</p>
-        <button className="edit-btn" onClick={() => setEdit(true)}>Edit</button>
-        <button className="delete-btn" onClick={handleDelete}>Delete</button>
+        <button className="edit-btn" onClick={() => setEdit(true)}>
+          Edit
+        </button>
+        <button className="delete-btn" onClick={handleDelete}>
+          Delete
+        </button>
       </div>
     );
   }

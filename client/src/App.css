@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0 auto;
   padding: 2rem;
   font-family: Arial, sans-serif;
@@ -28,18 +28,13 @@ h3 {
 .column {
   flex: 1;
   border: 1px solid #333;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 10px;
   box-shadow: -8px 8px 15px 0px rgba(255, 255, 255, 0.5);
-  background-color: rgba(51, 51, 51, 0.8);
-  margin: 20px;
+  background-color: rgba(51, 51, 51, 0.7);
+  margin: 15px;
   min-height: 35rem;
   min-width: 25rem;
-}
-
-.column h3 {
-  margin-bottom: 12px;
-  color: white;
 }
 
 .task-card {
@@ -47,18 +42,14 @@ h3 {
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 8px;
-  margin-bottom: 10px;
+  cursor: move;
+  margin: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.task-card p {
-  margin: 4px 0;
-  font-size: 1.2rem;
-}
-
 .container-register {
-  width: 400px;
-  min-height: 350px;
+  width: 30rem;
+  min-height: 20rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -105,10 +96,14 @@ form input {
   padding: 6px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  max-width: 200px;
 }
 
-form button {
-  align-self: flex-start;
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 img {
@@ -130,4 +125,75 @@ img {
 .description {
   text-wrap: 1;
   height: 50px;
+}
+
+textarea {
+  width: 200px;
+}
+
+.login-password {
+  margin-right: 30px;
+}
+
+.user-name {
+  margin-right: 40px;
+}
+
+.register-password {
+  margin-right: 30px;
+}
+
+.confirm-password {
+  margin-right: 90px;
+}
+
+.register-title {
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 480px) {
+  #root {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .columns-container {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .column {
+    min-width: 120%;
+    margin: 10px 0;
+  }
+
+  .container-register,
+  .login-container {
+    width: 90%;
+    padding: 1rem;
+  }
+
+  img {
+    width: 90%;
+    max-width: 250px;
+  }
+
+  form input,
+  textarea {
+    width: 90%;
+    max-width: 100%;
+  }
+
+  .login-form {
+    flex-direction: column;
+  }
+
+  .login-password,
+  .user-name,
+  .register-password,
+  .confirm-password,
+  .register-title {
+    margin: 0;
+  }
 }

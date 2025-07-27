@@ -2,12 +2,51 @@ import { useState, useEffect } from "react";
 import LogOutBtn from "../components/LogOutBtn";
 import TaskCard from "../components/TaskCard";
 import AddTaskForm from "../components/TaskCardForm";
+import logo from "../images/logodark.png"
 
 function Dashboard() {
   const [tasks, setTasks] = useState([]);
   const [backlogForm, setBacklogForm] = useState(false);
   const [inProgressForm, setInProgressForm] = useState(false);
   const [finishedForm, setFinishedForm] = useState(false);
+
+  async function addTask(task) {
+    try {
+      const response = await fetch("http://localhost:3000/api/tasks", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(task),
+      });
+      if (response.ok) {
+        getTasks();
+      } else {
+        console.log("could not add task");
+      }
+    } catch (error) {
+      console.error("Server Error " + error);
+    }
+  }
+
+  async function deleteTask(task) {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/tasks/${task.id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
+
+      if (response.ok) {
+        getTasks();
+      } else {
+        console.error("could not delete task");
+      }
+    } catch (error) {
+      console.error("server error", error);
+    }
+  }
 
   async function getTasks() {
     try {
@@ -124,25 +163,94 @@ function Dashboard() {
     );
   }
 
+  function handleDragOver(event) {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
+  }
+
+  function handleDrop(event) {
+    event.preventDefault();
+
+    const jsonString = event.dataTransfer.getData("application/json");
+    let receivedTask = JSON.parse(jsonString);
+
+    if (receivedTask != null) {
+      if (receivedTask.status === "backlog") {
+        if (event.target.id === "dropzone2") {
+          receivedTask.status = "in-progress";
+          addTask(receivedTask);
+          receivedTask.status = "backlog";
+          deleteTask(receivedTask);
+        } else if (event.target.id === "dropzone3") {
+          receivedTask.status = "finished";
+          addTask(receivedTask);
+          receivedTask.status = "backlog";
+          deleteTask(receivedTask);
+        }
+      } else if (receivedTask.status === "in-progress") {
+        if (event.target.id === "dropzone1") {
+          receivedTask.status = "backlog";
+          addTask(receivedTask);
+          receivedTask.status = "in-progress";
+          deleteTask(receivedTask);
+        } else if (event.target.id === "dropzone3") {
+          receivedTask.status = "finished";
+          addTask(receivedTask);
+          receivedTask.status = "in-progress";
+          deleteTask(receivedTask);
+        }
+      } else if (receivedTask.status === "finished") {
+        if (event.target.id === "dropzone1") {
+          receivedTask.status = "backlog";
+          addTask(receivedTask);
+          receivedTask.status = "finished";
+          deleteTask(receivedTask);
+        } else if (event.target.id === "dropzone2") {
+          receivedTask.status = "in-progress";
+          addTask(receivedTask);
+          receivedTask.status = "finished";
+          deleteTask(receivedTask);
+        }
+      }
+
+      getTasks();
+    }
+  }
+
   return (
     <div>
       <h2>Dashboard</h2>
       <div className="columns-container">
-        <div className="column">
+        <div
+          className="column"
+          id="dropzone1"
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+        >
           <h3>Backlog</h3>
           <button onClick={() => setBacklogForm(true)}>Add Task</button>
           {backlogFormContent}
           {backlogContent}
         </div>
 
-        <div className="column">
+        <div
+          className="column"
+          id="dropzone2"
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+        >
           <h3>In Progress</h3>
           <button onClick={() => setInProgressForm(true)}>Add Task</button>
           {inProgressFormContent}
           {inProgressContent}
         </div>
 
-        <div className="column">
+        <div
+          className="column"
+          id="dropzone3"
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+        >
           <h3>Finished</h3>
           <button onClick={() => setFinishedForm(true)}>Add Task</button>
           {finishedFormContent}
