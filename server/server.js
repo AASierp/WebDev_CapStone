@@ -28,7 +28,7 @@ app.use(express.json());
 //using cors to allow the front and back to be served on separate ports. May remove this later and serve both using express(front is utilizing vite for developement);
 app.use(
   cors({
-    origin: "http://localhost:6173", //only allow traffic from front-end (if this were deployed it would be a url);
+    origin: 6173, //only allow traffic from front-end (if this were deployed it would be a url);
     credentials: true, // allows cookies/sessions to work accross requests
   })
 );
