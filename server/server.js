@@ -25,7 +25,7 @@ app.use(
 
 //tells the server to parse incoming json data to a JS object
 app.use(express.json());
-//using cors to allow the front and back to be served on separate ports. May remove this later and serve both using express(front is utilizing vite for developement);
+//using cors to allow the front and back to be served on separate ports.
 app.use(
   cors({
     origin: 'http://localhost:5173', //only allow traffic from front-end (if this were deployed it would be a url);

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import LogOutBtn from "../components/LogOutBtn";
 import TaskCard from "../components/TaskCard";
 import AddTaskForm from "../components/TaskCardForm";
-import logo from "../images/logodark.png"
+//import logo from "../images/logodark.png"
 
 function Dashboard() {
   const [tasks, setTasks] = useState([]);

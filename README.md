@@ -10,7 +10,7 @@ Task Forge is a lightweight KanBan Board web application for task organization a
 
 ---
 
-- User login with session-persistence for authentication (express-sessions).
+- User login with session based authentication (express-sessions).
 - User registration with user data persisted to database.
 - Task creation with database persistence.
 - Task update and delete functionality via CRUD API.
@@ -120,13 +120,21 @@ At this point, you should be able to test the application at your leisure. I rec
 
 If you have a SQLite database viewer installed (I use DB Browser for SQLite), you can also observe changes in real time as you test functionality.
 
+### AI USAGE
+
+---
+
+I heavily utilized Chatgpt in implementing and understanding 'session' state and persistence.
+Not a direct cut and paste but definitely a step by step explanation with directions on implementation.
 
 ### Reflection
+
 ---
+
 If I had the choice to make again, I may have opted for vanilla js for the UI rather than dive headlong into attempting to learn React. I feel that I spent SO much time watching tutorials and reading documentation (and rewatching/rereading), that I could have produced a far more impressive application in the same amount of time had I used something I already had a bit of familiarity with. Also, the choice to use React deprived me of getting additional practice with DOM manipulation, which is something I feel I need. On the positive side, React is a high demand skill and now that I have had an introduction to it, I will likely use it again in future project to further hone my skill.
 
 ### Future Improvements
 
 ---
 
-Eventually, I hope to create an expanded version that will be a kind of "life management" application; which I intend on rebranding as "LifeForge". Ideally, it will include a wide range of features, everything from budgeting to meal prep. Although, before I get to all of that, I think I probably need to do a bit better job modularizing the program as it exists at the moment, as well as be a little more diligent and less vague in my error handling.
+Eventually, I hope to create an expanded version that will be a kind of "life management" application; which I intend on rebranding as "LifeForge". Ideally, it will include a wide range of features, everything from budgeting to meal prep. Although, before I get to all of that, I think I probably need to do a bit better job modularizing the program as it exists at the moment, as well as be a little more diligent and less vague in my error handling. Also, early on I was really on top of commenting my code. I let that slip quite a lot, as time went on. I will attempt to complete commenting the code in the near future.

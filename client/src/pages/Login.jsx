@@ -10,7 +10,6 @@ function Login() {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
-
   const submission = async (element) => {
     element.preventDefault();
     setError("");

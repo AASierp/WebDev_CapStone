@@ -17,9 +17,6 @@ export function requireLogin(req, res, next) {
 
 //////////////////////ROUTES///////////////////////////////////////////////////////////////////////////
 
-// creates route that is listening for for post requests from the front end @ /register
-// when a request is made, like submitting a form, this runs.
-
 router.post("/register", async (req, res) => {
   //setting the email and password sent in the request body to constant.
   const email = req.body.email;
